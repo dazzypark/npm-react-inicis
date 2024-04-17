@@ -11,4 +11,4 @@ function RandomStringFunc (index) {
     return randomstring
 }
 
-export default RandomStringFunc;
+module.exports = RandomStringFunc;
