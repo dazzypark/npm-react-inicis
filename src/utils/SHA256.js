@@ -127,4 +127,4 @@ function SHA256(s){
     
 }
 
-export default SHA256;
+module.exports = SHA256;
