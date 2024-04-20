@@ -92,7 +92,6 @@ var ReactInicis = function ReactInicis(_ref) {
     setOid(payData.oid || _timeStamp + (0, _randomStringFunc.default)(7));
     var body = document.querySelector("body"); // PC
 
-    if (body.offsetWidth > 1024) {
       var agt = navigator.userAgent.toLowerCase();
       var script = document.createElement("script");
       script.src = isTest ? testURL : releaseURL;
@@ -105,12 +104,6 @@ var ReactInicis = function ReactInicis(_ref) {
           e.path[3].defaultView.INIStdPay.pay('SendPayForm_id');
         }
       };
-    } else {
-      // MOBILE
-      mobilePurchaseRef.current.action = "https://mobile.inicis.com/smart/payment/";
-      mobilePurchaseRef.current.target = "_self";
-      mobilePurchaseRef.current.submit();
-    }
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
