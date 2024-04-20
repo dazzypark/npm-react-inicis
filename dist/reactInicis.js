@@ -89,7 +89,7 @@ var ReactInicis = function ReactInicis(_ref) {
     var _timeStamp = (0, _makeTimeStamp.default)();
 
     setTimestamp(_timeStamp);
-    setOid(_timeStamp + (0, _randomStringFunc.default)(7));
+    setOid(payData.oid || _timeStamp + (0, _randomStringFunc.default)(7));
     var body = document.querySelector("body"); // PC
 
     if (body.offsetWidth > 1024) {
