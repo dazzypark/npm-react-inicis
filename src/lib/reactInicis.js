@@ -74,38 +74,47 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
     <div style={{ display: "none" }}>
       {/* 이니시스 PC 결제 폼 */}
       <form id="SendPayForm_id" name="" method="Post">
-        <input
-          type="text"
-          readOnly
-          name="goodname"
-          value={payData.productName}
-        />
-        <input
-          type="text"
-          readOnly
-          name="buyername"
-          value={payData.buyerName}
-        />
-        <input type="text" readOnly name="buyertel" value={payData.buyerTel} />
-        <input
-          type="text"
-          readOnly
-          name="buyeremail"
-          value={payData.buyerEmail}
-        />
-        <input type="text" readOnly name="price" value={payData.productPrice} />
-        <input
-          type="hidden"
-          readOnly
-          name="mid"
-          value={isTest ? "INIpayTest" : payData.mid}
-        />
+        <input type="hidden" readOnly name="version" value="1.0" />
+
         <input
           type="hidden"
           readOnly
           name="gopaymethod"
           value={payServerText(payData.payStatus)}
         />
+
+        <input
+          type="hidden"
+          readOnly
+          name="mid"
+          value={isTest ? "INIpayTest" : payData.mid}
+        />
+        <input type="hidden" readOnly name="oid" value={oid} />
+
+        <input type="text" readOnly name="price" value={payData.productPrice} />
+
+        <input type="hidden" readOnly name="timestamp" value={timestamp} />
+
+        <input type="hidden" readOnly name="use_chkfake" value={"Y"} />
+
+        <input
+          type="hidden"
+          readOnly
+          name="signature"
+          value={SHA256(
+            `oid=${oid}&price=${payData.productPrice}&timestamp=${timestamp}`
+          )}
+        />
+
+        <input
+          type="hidden"
+          readOnly
+          name="verification"
+          value={SHA256(
+            `oid=${oid}&price=${payData.productPrice}&signKey=${payData.mKey}&timestamp=${timestamp}`
+          )}
+        />
+
         <input
           type="hidden"
           readOnly
@@ -116,24 +125,30 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
               : SHA256(payData.mKey)
           }
         />
-        <input
-          type="hidden"
-          readOnly
-          name="signature"
-          value={SHA256(
-            `oid=${oid}&price=${payData.productPrice}&timestamp=${timestamp}`
-          )}
-        />
-        <input type="hidden" readOnly name="oid" value={oid} />
-        <input type="hidden" readOnly name="timestamp" value={timestamp} />
-        <input type="hidden" readOnly name="version" value="1.0" />
+
         <input type="hidden" readOnly name="currency" value="WON" />
 
         <input
-          type="hidden"
+          type="text"
           readOnly
-          name="acceptmethod"
-          value={`centerCd(Y)`}
+          name="goodname"
+          value={payData.productName}
+        />
+
+        <input
+          type="text"
+          readOnly
+          name="buyername"
+          value={payData.buyerName}
+        />
+
+        <input type="text" readOnly name="buyertel" value={payData.buyerTel} />
+
+        <input
+          type="text"
+          readOnly
+          name="buyeremail"
+          value={payData.buyerEmail}
         />
 
         <input
@@ -149,6 +164,13 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           name="closeUrl"
           value={payData.closeUrl}
         />
+
+        <input
+          type="hidden"
+          readOnly
+          name="acceptmethod"
+          value={`centerCd(Y)`}
+        />
       </form>
 
       {/* 이니시스 MOBILR 결제 폼 */}
@@ -158,12 +180,6 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
         acceptCharset="euc-kr"
         ref={mobilePurchaseRef}
       >
-        <input
-          type="text"
-          readOnly
-          name="P_NEXT_URL"
-          value={payData.returnUrl}
-        />
         <input
           type="text"
           readOnly
@@ -177,24 +193,23 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           value={isTest ? "INIpayTest" : payData.mid}
         />
         <input type="text" readOnly name="P_OID" value={oid} />
+        <input type="text" readOnly name="P_AMT" value={payData.productPrice} />
         <input
           type="text"
           readOnly
           name="P_GOODS"
           value={payData.productName}
         />
-        <input type="text" readOnly name="P_AMT" value={payData.productPrice} />
         <input type="text" readOnly name="P_UNAME" value={payData.buyerName} />
-
-        {/* 휴대폰결제 필수 [1:컨텐츠, 2:실물] */}
-        {payData.payStatus === 2 && (
-          <input
-            type="text"
-            readOnly
-            name="P_HPP_METHOD"
-            value={payData.telStatus}
-          />
-        )}
+        <input
+          type="text"
+          readOnly
+          name="P_NEXT_URL"
+          value={payData.returnUrl}
+        />
+        <input type="text" readOnly name="P_RESERVED" value={`centerCd=Y`} />
+        <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
+        <input type="text" readOnly name="P_MNAME" value={`알로항`} />
       </form>
 
       <button onClick={onClickPurchase}>구매하기 버튼</button>

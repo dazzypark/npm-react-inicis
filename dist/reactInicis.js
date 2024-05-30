@@ -85,6 +85,61 @@ const ReactInicis = _ref => {
     name: "",
     method: "Post"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "version",
+    value: "1.0"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "gopaymethod",
+    value: payServerText(payData.payStatus)
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "mid",
+    value: isTest ? "INIpayTest" : payData.mid
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "oid",
+    value: oid
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "price",
+    value: payData.productPrice
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "timestamp",
+    value: timestamp
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "use_chkfake",
+    value: "Y"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "signature",
+    value: (0, _SHA.default)("oid=".concat(oid, "&price=").concat(payData.productPrice, "&timestamp=").concat(timestamp))
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "verification",
+    value: (0, _SHA.default)("oid=".concat(oid, "&price=").concat(payData.productPrice, "&signKey=").concat(payData.mKey, "&timestamp=").concat(timestamp))
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "mKey",
+    value: isTest ? "3a9503069192f207491d4b19bd743fc249a761ed94246c8c42fed06c3cd15a33" : (0, _SHA.default)(payData.mKey)
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "currency",
+    value: "WON"
+  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
     name: "goodname",
@@ -105,56 +160,6 @@ const ReactInicis = _ref => {
     name: "buyeremail",
     value: payData.buyerEmail
   }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    readOnly: true,
-    name: "price",
-    value: payData.productPrice
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "mid",
-    value: isTest ? "INIpayTest" : payData.mid
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "gopaymethod",
-    value: payServerText(payData.payStatus)
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "mKey",
-    value: isTest ? "3a9503069192f207491d4b19bd743fc249a761ed94246c8c42fed06c3cd15a33" : (0, _SHA.default)(payData.mKey)
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "signature",
-    value: (0, _SHA.default)("oid=".concat(oid, "&price=").concat(payData.productPrice, "&timestamp=").concat(timestamp))
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "oid",
-    value: oid
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "timestamp",
-    value: timestamp
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "version",
-    value: "1.0"
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "currency",
-    value: "WON"
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "hidden",
-    readOnly: true,
-    name: "acceptmethod",
-    value: "centerCd(Y)"
-  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
     name: "returnUrl",
@@ -164,17 +169,17 @@ const ReactInicis = _ref => {
     readOnly: true,
     name: "closeUrl",
     value: payData.closeUrl
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "hidden",
+    readOnly: true,
+    name: "acceptmethod",
+    value: "centerCd(Y)"
   })), /*#__PURE__*/_react.default.createElement("form", {
     name: "mobileweb",
     method: "post",
     acceptCharset: "euc-kr",
     ref: mobilePurchaseRef
   }, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    readOnly: true,
-    name: "P_NEXT_URL",
-    value: payData.returnUrl
-  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
     name: "P_INI_PAYMENT",
@@ -192,23 +197,38 @@ const ReactInicis = _ref => {
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
-    name: "P_GOODS",
-    value: payData.productName
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    readOnly: true,
     name: "P_AMT",
     value: payData.productPrice
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
-    name: "P_UNAME",
-    value: payData.buyerName
-  }), payData.payStatus === 2 && /*#__PURE__*/_react.default.createElement("input", {
+    name: "P_GOODS",
+    value: payData.productName
+  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
-    name: "P_HPP_METHOD",
-    value: payData.telStatus
+    name: "P_UNAME",
+    value: payData.buyerName
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_NEXT_URL",
+    value: payData.returnUrl
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_RESERVED",
+    value: "centerCd=Y"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_EMAIL",
+    value: payData.buyerEmail
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_MNAME",
+    value: "\uC54C\uB85C\uD56D"
   })), /*#__PURE__*/_react.default.createElement("button", {
     onClick: onClickPurchase
   }, "\uAD6C\uB9E4\uD558\uAE30 \uBC84\uD2BC"));
