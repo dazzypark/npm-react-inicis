@@ -229,6 +229,11 @@ const ReactInicis = _ref => {
     readOnly: true,
     name: "P_MNAME",
     value: "\uC54C\uB85C\uD56D"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_NOTI",
+    value: payData.mobileCustomData || ""
   })), /*#__PURE__*/_react.default.createElement("button", {
     onClick: onClickPurchase
   }, "\uAD6C\uB9E4\uD558\uAE30 \uBC84\uD2BC"));

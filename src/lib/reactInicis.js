@@ -210,6 +210,8 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
         <input type="text" readOnly name="P_RESERVED" value={`centerCd=Y`} />
         <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
         <input type="text" readOnly name="P_MNAME" value={`알로항`} />
+
+        <input type="text" readOnly name="P_NOTI" value={payData.mobileCustomData || ""} />
       </form>
 
       <button onClick={onClickPurchase}>구매하기 버튼</button>
