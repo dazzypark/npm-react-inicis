@@ -5,19 +5,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "CloseInicis", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _closeInicis.default;
   }
 });
 Object.defineProperty(exports, "ReactInicis", {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _reactInicis.default;
   }
 });
-
-var _reactInicis = _interopRequireDefault(require("./reactInicis"));
-
 var _closeInicis = _interopRequireDefault(require("./closeInicis"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _reactInicis = _interopRequireDefault(require("./reactInicis"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
