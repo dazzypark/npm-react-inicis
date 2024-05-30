@@ -5,4 +5,4 @@ function MakeTimeStamp() {
   return newTimestamp;
 }
 
-export default MakeTimeStamp;
+module.exports = MakeTimeStamp;
