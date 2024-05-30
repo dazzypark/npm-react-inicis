@@ -59,21 +59,15 @@ const ReactInicis = _ref => {
   const onClickPurchase = () => {
     const _timeStamp = (0, _makeTimeStamp.default)();
     setTimestamp(_timeStamp);
-    setOid(_timeStamp + (0, _randomStringFunc.default)(7));
-    const body = document.querySelector("body");
+    setOid(payData.oid || _timeStamp + (0, _randomStringFunc.default)(7));
 
     // PC
-    if (body.offsetWidth > 1024) {
-      const agt = navigator.userAgent.toLowerCase();
+    if (window.innerWidth > 1024) {
       const script = document.createElement("script");
       script.src = isTest ? testURL : releaseURL;
       document.head.appendChild(script);
-      script.onload = e => {
-        if (navigator.appName === "Netscape" && agt.indexOf("trident") !== -1 || agt.indexOf("msie") !== -1 || agt.indexOf("edge")) {
-          e.srcElement.ownerDocument.defaultView.INIStdPay.pay("SendPayForm_id");
-        } else {
-          e.path[3].defaultView.INIStdPay.pay("SendPayForm_id");
-        }
+      script.onload = () => {
+        window.INIStdPay.pay("SendPayForm_id");
       };
     } else {
       // MOBILE
@@ -155,11 +149,11 @@ const ReactInicis = _ref => {
     readOnly: true,
     name: "currency",
     value: "WON"
-  }), payData.payStatus === 2 && /*#__PURE__*/_react.default.createElement("input", {
+  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
     name: "acceptmethod",
-    value: "HPP(".concat(payData.telStatus, ")")
+    value: "centerCd(Y)"
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
