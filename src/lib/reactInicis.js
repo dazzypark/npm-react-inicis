@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import SHA256 from "../utils/SHA256";
 import MakeTimeStamp from "../utils/makeTimeStamp";
-import RandomStringFunc from "../utils/randomStringFunc";
 
 const testURL = "https://stgstdpay.inicis.com/stdjs/INIStdPay.js";
 const releaseURL = "https://stdpay.inicis.com/stdjs/INIStdPay.js";
@@ -35,7 +34,6 @@ const payServerTextMb = (index) => {
 const ReactInicis = ({ payData, isPurchase, isTest }) => {
   const mobilePurchaseRef = useRef();
   const [timestamp, setTimestamp] = useState(0);
-  const [oid, setOid] = useState(0);
 
   useEffect(() => {
     if (!isPurchase) {
@@ -48,9 +46,13 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
   const onClickPurchase = () => {
     const _timeStamp = MakeTimeStamp();
     setTimestamp(_timeStamp);
-    setOid(payData.oid || _timeStamp + RandomStringFunc(7));
+  };
 
-    // PC
+  useEffect(() => {
+    if (timestamp === 0) {
+      return;
+    }
+
     if (window.innerWidth > 1024) {
       const script = document.createElement("script");
 
@@ -68,7 +70,16 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
       mobilePurchaseRef.current.target = "_self";
       mobilePurchaseRef.current.submit();
     }
-  };
+
+    return () => {
+      if (window.innerWidth > 1024) {
+        const script = document.querySelector("script[src*='INIStdPay.js']");
+        if (script) {
+          script.remove();
+        }
+      }
+    }
+  }, [timestamp]);
 
   return (
     <div style={{ display: "none" }}>
@@ -89,7 +100,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           name="mid"
           value={isTest ? "INIpayTest" : payData.mid}
         />
-        <input type="hidden" readOnly name="oid" value={oid} />
+        <input type="hidden" readOnly name="oid" value={payData.oid} />
 
         <input type="text" readOnly name="price" value={payData.productPrice} />
 
@@ -102,7 +113,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           readOnly
           name="signature"
           value={SHA256(
-            `oid=${oid}&price=${payData.productPrice}&timestamp=${timestamp}`
+            `oid=${payData.oid}&price=${payData.productPrice}&timestamp=${timestamp}`
           )}
         />
 
@@ -111,7 +122,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           readOnly
           name="verification"
           value={SHA256(
-            `oid=${oid}&price=${payData.productPrice}&signKey=${payData.mKey}&timestamp=${timestamp}`
+            `oid=${payData.oid}&price=${payData.productPrice}&signKey=${payData.mKey}&timestamp=${timestamp}`
           )}
         />
 
@@ -192,7 +203,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           name="P_MID"
           value={isTest ? "INIpayTest" : payData.mid}
         />
-        <input type="text" readOnly name="P_OID" value={"553bc7b995ff4a39a05a02d1d53313bf"} />
+        <input type="text" readOnly name="P_OID" value={payData.oid} />
         <input type="text" readOnly name="P_AMT" value={payData.productPrice} />
         <input
           type="text"
@@ -209,7 +220,6 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
         />
         <input type="text" readOnly name="P_RESERVED" value={"centerCd=Y"} />
         <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
-        <input type="text" readOnly name="P_MNAME" value={"알로항"} />
 
         <input type="text" readOnly name="P_NOTI" value={payData.mobileCustomData || ""} />
         <input type="text" readOnly name="P_CHARSET" value={"utf8"} />

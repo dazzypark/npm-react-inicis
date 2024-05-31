@@ -7,7 +7,6 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _SHA = _interopRequireDefault(require("../src/utils/SHA256"));
 var _makeTimeStamp = _interopRequireDefault(require("../src/utils/makeTimeStamp"));
-var _randomStringFunc = _interopRequireDefault(require("../src/utils/randomStringFunc"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
@@ -47,7 +46,6 @@ const ReactInicis = _ref => {
   } = _ref;
   const mobilePurchaseRef = (0, _react.useRef)();
   const [timestamp, setTimestamp] = (0, _react.useState)(0);
-  const [oid, setOid] = (0, _react.useState)(0);
   (0, _react.useEffect)(() => {
     if (!isPurchase) {
       return;
@@ -59,9 +57,11 @@ const ReactInicis = _ref => {
   const onClickPurchase = () => {
     const _timeStamp = (0, _makeTimeStamp.default)();
     setTimestamp(_timeStamp);
-    setOid(payData.oid || _timeStamp + (0, _randomStringFunc.default)(7));
-
-    // PC
+  };
+  (0, _react.useEffect)(() => {
+    if (timestamp === 0) {
+      return;
+    }
     if (window.innerWidth > 1024) {
       const script = document.createElement("script");
       script.src = isTest ? testURL : releaseURL;
@@ -75,7 +75,15 @@ const ReactInicis = _ref => {
       mobilePurchaseRef.current.target = "_self";
       mobilePurchaseRef.current.submit();
     }
-  };
+    return () => {
+      if (window.innerWidth > 1024) {
+        const script = document.querySelector("script[src*='INIStdPay.js']");
+        if (script) {
+          script.remove();
+        }
+      }
+    };
+  }, [timestamp]);
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       display: "none"
@@ -103,7 +111,7 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "oid",
-    value: oid
+    value: payData.oid
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
@@ -123,12 +131,12 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "signature",
-    value: (0, _SHA.default)("oid=".concat(oid, "&price=").concat(payData.productPrice, "&timestamp=").concat(timestamp))
+    value: (0, _SHA.default)("oid=".concat(payData.oid, "&price=").concat(payData.productPrice, "&timestamp=").concat(timestamp))
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
     name: "verification",
-    value: (0, _SHA.default)("oid=".concat(oid, "&price=").concat(payData.productPrice, "&signKey=").concat(payData.mKey, "&timestamp=").concat(timestamp))
+    value: (0, _SHA.default)("oid=".concat(payData.oid, "&price=").concat(payData.productPrice, "&signKey=").concat(payData.mKey, "&timestamp=").concat(timestamp))
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
@@ -193,7 +201,7 @@ const ReactInicis = _ref => {
     type: "text",
     readOnly: true,
     name: "P_OID",
-    value: "553bc7b995ff4a39a05a02d1d53313bf"
+    value: payData.oid
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
@@ -224,11 +232,6 @@ const ReactInicis = _ref => {
     readOnly: true,
     name: "P_EMAIL",
     value: payData.buyerEmail
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    readOnly: true,
-    name: "P_MNAME",
-    value: "알로항"
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
