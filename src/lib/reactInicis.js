@@ -169,7 +169,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           type="hidden"
           readOnly
           name="acceptmethod"
-          value={`centerCd(Y)`}
+          value={"centerCd(Y)"}
         />
       </form>
 
@@ -192,7 +192,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           name="P_MID"
           value={isTest ? "INIpayTest" : payData.mid}
         />
-        <input type="text" readOnly name="P_OID" value={oid} />
+        <input type="text" readOnly name="P_OID" value={"553bc7b995ff4a39a05a02d1d53313bf"} />
         <input type="text" readOnly name="P_AMT" value={payData.productPrice} />
         <input
           type="text"
@@ -207,11 +207,12 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           name="P_NEXT_URL"
           value={payData.returnUrl}
         />
-        <input type="text" readOnly name="P_RESERVED" value={`centerCd=Y`} />
+        <input type="text" readOnly name="P_RESERVED" value={"centerCd=Y"} />
         <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
-        <input type="text" readOnly name="P_MNAME" value={`알로항`} />
+        <input type="text" readOnly name="P_MNAME" value={"알로항"} />
 
         <input type="text" readOnly name="P_NOTI" value={payData.mobileCustomData || ""} />
+        <input type="text" readOnly name="P_CHARSET" value={"utf8"} />
       </form>
 
       <button onClick={onClickPurchase}>구매하기 버튼</button>
