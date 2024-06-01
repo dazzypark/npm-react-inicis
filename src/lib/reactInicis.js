@@ -180,7 +180,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           type="hidden"
           readOnly
           name="acceptmethod"
-          value={"centerCd(Y)"}
+          value={`centerCd(Y);SKIN(${payData.payPopupSkin || "#C1272C"})`}
         />
       </form>
 

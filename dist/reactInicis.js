@@ -181,7 +181,7 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "acceptmethod",
-    value: "centerCd(Y)"
+    value: "centerCd(Y);SKIN(".concat(payData.payPopupSkin || "#C1272C", ")")
   })), /*#__PURE__*/_react.default.createElement("form", {
     name: "mobileweb",
     method: "post",
