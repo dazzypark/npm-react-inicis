@@ -131,12 +131,12 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "signature",
-    value: (0, _SHA.default)("oid=".concat(payData.oid, "&price=").concat(payData.productPrice, "&timestamp=").concat(timestamp))
+    value: (0, _SHA.default)(`oid=${payData.oid}&price=${payData.productPrice}&timestamp=${timestamp}`)
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
     name: "verification",
-    value: (0, _SHA.default)("oid=".concat(payData.oid, "&price=").concat(payData.productPrice, "&signKey=").concat(payData.mKey, "&timestamp=").concat(timestamp))
+    value: (0, _SHA.default)(`oid=${payData.oid}&price=${payData.productPrice}&signKey=${payData.mKey}&timestamp=${timestamp}`)
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "hidden",
     readOnly: true,
@@ -181,7 +181,7 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "acceptmethod",
-    value: "centerCd(Y):SKIN(".concat(payData.payPopupSkin || "#C1272C", ")")
+    value: `centerCd(Y):SKIN(${payData.payPopupSkin || "#C1272C"})`
   })), /*#__PURE__*/_react.default.createElement("form", {
     name: "mobileweb",
     method: "post",

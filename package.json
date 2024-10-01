@@ -1,6 +1,6 @@
 {
-  "name": "@hellojh/react-inicis",
-  "version": "1.0.91",
+  "name": "@dazzy/react-inicis",
+  "version": "1.0.92",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "dependencies": {
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hellojaehyeok/npm-react-inicis"
+    "url": "https://github.com/dazzypark/npm-react-inicis"
   },
   "babel": {
     "presets": [
