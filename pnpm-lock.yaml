@@ -22,8 +22,8 @@ importers:
         version: 4.2.3
     devDependencies:
       '@babel/cli':
-        specifier: ^7.25.6
-        version: 7.25.6(@babel/core@7.25.2)
+        specifier: ^7.25.7
+        version: 7.25.7(@babel/core@7.25.2)
       '@babel/preset-react':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.25.2)
@@ -44,8 +44,8 @@ packages:
     peerDependencies:
       ajv: '>=8'
 
-  '@babel/cli@7.25.6':
-    resolution: {integrity: sha512-Z+Doemr4VtvSD2SNHTrkiFZ1LX+JI6tyRXAAOb4N9khIuPyoEPmTPJarPm8ljJV1D6bnMQjyHMWTT9NeKbQuXA==}
+  '@babel/cli@7.25.7':
+    resolution: {integrity: sha512-vQw4QjrqjLSuL0Tt3gfVXbxEHOfsCcHN8tKyTclpSMYLq3Bp0BTzWYZfMKBs3PQ+to8q3BnumBIAsMdOqDJ6nw==}
     engines: {node: '>=6.9.0'}
     hasBin: true
     peerDependencies:
@@ -5438,7 +5438,7 @@ snapshots:
       jsonpointer: 5.0.1
       leven: 3.1.0
 
-  '@babel/cli@7.25.6(@babel/core@7.25.2)':
+  '@babel/cli@7.25.7(@babel/core@7.25.2)':
     dependencies:
       '@babel/core': 7.25.2
       '@jridgewell/trace-mapping': 0.3.25
