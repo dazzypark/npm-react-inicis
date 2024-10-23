@@ -893,8 +893,8 @@ packages:
     resolution: {integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/plugin-kit@0.2.0':
-    resolution: {integrity: sha512-vH9PiIMMwvhCx31Af3HiGzsVNULDbyVkHXwlemn/B0TFj/00ho3y55efXrUZTfQipxoHC5u4xq6zblww1zm1Ig==}
+  '@eslint/plugin-kit@0.2.1':
+    resolution: {integrity: sha512-HFZ4Mp26nbWk9d/BpvP0YNL6W4UoZF0VFcTw/aPPA8RpOxeFQgK+ClABGgAUXs9Y/RGX/l1vOmrqz1MQt9MNuw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@humanfs/core@0.19.0':
@@ -1456,6 +1456,11 @@ packages:
 
   acorn@8.12.1:
     resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.13.0:
+    resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -2903,8 +2908,8 @@ packages:
     resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
     engines: {node: '>= 6'}
 
-  http-proxy-middleware@2.0.6:
-    resolution: {integrity: sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==}
+  http-proxy-middleware@2.0.7:
+    resolution: {integrity: sha512-fgVY8AV7qU7z/MmXJ/rxwbrtQH4jBQ9m7kp3llF0liB7glmFeVZFBepQb32T3y8n8k2+AEYuMPCpinYW+/CuRA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@types/express': ^4.17.13
@@ -6544,7 +6549,7 @@ snapshots:
 
   '@eslint/object-schema@2.1.4': {}
 
-  '@eslint/plugin-kit@0.2.0':
+  '@eslint/plugin-kit@0.2.1':
     dependencies:
       levn: 0.4.1
 
@@ -7290,15 +7295,17 @@ snapshots:
     dependencies:
       acorn: 8.12.1
 
-  acorn-jsx@5.3.2(acorn@8.12.1):
+  acorn-jsx@5.3.2(acorn@8.13.0):
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.13.0
 
   acorn-walk@7.2.0: {}
 
   acorn@7.4.1: {}
 
   acorn@8.12.1: {}
+
+  acorn@8.13.0: {}
 
   address@1.2.2: {}
 
@@ -8546,7 +8553,7 @@ snapshots:
       '@eslint/core': 0.6.0
       '@eslint/eslintrc': 3.1.0
       '@eslint/js': 9.12.0
-      '@eslint/plugin-kit': 0.2.0
+      '@eslint/plugin-kit': 0.2.1
       '@humanfs/node': 0.16.5
       '@humanwhocodes/module-importer': 1.0.1
       '@humanwhocodes/retry': 0.3.1
@@ -8582,8 +8589,8 @@ snapshots:
 
   espree@10.2.0:
     dependencies:
-      acorn: 8.12.1
-      acorn-jsx: 5.3.2(acorn@8.12.1)
+      acorn: 8.13.0
+      acorn-jsx: 5.3.2(acorn@8.13.0)
       eslint-visitor-keys: 4.1.0
 
   esprima@1.2.2: {}
@@ -9034,7 +9041,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  http-proxy-middleware@2.0.6(@types/express@4.17.21):
+  http-proxy-middleware@2.0.7(@types/express@4.17.21):
     dependencies:
       '@types/http-proxy': 1.17.15
       http-proxy: 1.18.1
@@ -11763,7 +11770,7 @@ snapshots:
       express: 4.21.0
       graceful-fs: 4.2.11
       html-entities: 2.5.2
-      http-proxy-middleware: 2.0.6(@types/express@4.17.21)
+      http-proxy-middleware: 2.0.7(@types/express@4.17.21)
       ipaddr.js: 2.2.0
       launch-editor: 2.9.1
       open: 8.4.2
