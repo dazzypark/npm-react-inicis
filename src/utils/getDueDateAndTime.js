@@ -1,6 +1,6 @@
 function getDueDateAndTime(timestamp) {
   if (!timestamp) {
-    timestamp = Date.now() + 1000 * 60 * 60 * 24 * 30.4;
+    timestamp = Date.now() + 1000 * 60 * 60 * 24 * 29;
   }
 
   const date = new Date(timestamp);
