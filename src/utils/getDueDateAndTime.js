@@ -1,4 +1,4 @@
-export default function getDueDateAndTime(timestamp) {
+function getDueDateAndTime(timestamp) {
   if (!timestamp) {
     timestamp = Date.now() + 1000 * 60 * 60 * 24 * 30.4;
   }
@@ -15,3 +15,5 @@ export default function getDueDateAndTime(timestamp) {
 
   return { P_VBANK_DT, P_VBANK_TM };
 }
+
+module.exports = getDueDateAndTime;
