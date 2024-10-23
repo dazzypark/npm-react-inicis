@@ -5,7 +5,7 @@ function getDueDateAndTime(timestamp) {
 
   const date = new Date(timestamp);
 
-  const dueDateTime = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+  const dueDateTime = new Date(date.getTime());
 
   const P_VBANK_DT = dueDateTime.toISOString().split("T")[0].replace(/-/g, "");
 
