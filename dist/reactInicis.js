@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _SHA = _interopRequireDefault(require("../src/utils/SHA256"));
-var _getDueDateAndTime = require("../src/utils/getDueDateAndTime");
+var _getDueDateAndTime = _interopRequireDefault(require("../src/utils/getDueDateAndTime"));
 var _makeTimeStamp = _interopRequireDefault(require("../src/utils/makeTimeStamp"));
 var _react = _interopRequireWildcard(require("react"));
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
@@ -88,7 +88,7 @@ const ReactInicis = _ref => {
   const {
     P_VBANK_TM,
     P_VBANK_DT
-  } = (0, _getDueDateAndTime.getDueDateAndTime)(payData.depositDueDate);
+  } = (0, _getDueDateAndTime.default)(payData.depositDueDate);
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       display: "none"
