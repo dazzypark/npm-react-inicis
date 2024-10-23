@@ -4,12 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = _interopRequireWildcard(require("react"));
 var _SHA = _interopRequireDefault(require("../src/utils/SHA256"));
+var _getDueDateAndTime = require("../src/utils/getDueDateAndTime");
 var _makeTimeStamp = _interopRequireDefault(require("../src/utils/makeTimeStamp"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var _react = _interopRequireWildcard(require("react"));
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const testURL = "https://stgstdpay.inicis.com/stdjs/INIStdPay.js";
 const releaseURL = "https://stdpay.inicis.com/stdjs/INIStdPay.js";
 
@@ -52,12 +53,6 @@ const ReactInicis = _ref => {
     }
     onClickPurchase();
   }, [isPurchase]);
-
-  // 구매하기 버튼 클릭
-  const onClickPurchase = () => {
-    const _timeStamp = (0, _makeTimeStamp.default)();
-    setTimestamp(_timeStamp);
-  };
   (0, _react.useEffect)(() => {
     if (timestamp === 0) {
       return;
@@ -84,6 +79,16 @@ const ReactInicis = _ref => {
       }
     };
   }, [timestamp]);
+
+  // 구매하기 버튼 클릭
+  const onClickPurchase = () => {
+    const _timeStamp = (0, _makeTimeStamp.default)();
+    setTimestamp(_timeStamp);
+  };
+  const {
+    P_VBANK_TM,
+    P_VBANK_DT
+  } = (0, _getDueDateAndTime.getDueDateAndTime)(payData.depositDueDate);
   return /*#__PURE__*/_react.default.createElement("div", {
     style: {
       display: "none"
@@ -181,7 +186,7 @@ const ReactInicis = _ref => {
     type: "hidden",
     readOnly: true,
     name: "acceptmethod",
-    value: `centerCd(Y):SKIN(${payData.payPopupSkin || "#C1272C"})`
+    value: `centerCd(Y):SKIN(${payData.payPopupSkin || "#C1272C"}):vbank(${P_VBANK_DT}${P_VBANK_TM})`
   })), /*#__PURE__*/_react.default.createElement("form", {
     name: "mobileweb",
     method: "post",
@@ -247,6 +252,16 @@ const ReactInicis = _ref => {
     readOnly: true,
     name: "P_CHARSET",
     value: "utf8"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_VBANK_DT",
+    value: P_VBANK_DT
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
+    name: "P_VBANK_TM",
+    value: P_VBANK_TM
   })), /*#__PURE__*/_react.default.createElement("button", {
     onClick: onClickPurchase
   }, "\uAD6C\uB9E4\uD558\uAE30 \uBC84\uD2BC"));

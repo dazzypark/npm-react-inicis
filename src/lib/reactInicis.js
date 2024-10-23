@@ -1,6 +1,7 @@
+import SHA256 from "@utils/SHA256";
+import { getDueDateAndTime } from "@utils/getDueDateAndTime";
+import MakeTimeStamp from "@utils/makeTimeStamp";
 import React, { useEffect, useRef, useState } from "react";
-import SHA256 from "../utils/SHA256";
-import MakeTimeStamp from "../utils/makeTimeStamp";
 
 const testURL = "https://stgstdpay.inicis.com/stdjs/INIStdPay.js";
 const releaseURL = "https://stdpay.inicis.com/stdjs/INIStdPay.js";
@@ -42,12 +43,6 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
     onClickPurchase();
   }, [isPurchase]);
 
-  // 구매하기 버튼 클릭
-  const onClickPurchase = () => {
-    const _timeStamp = MakeTimeStamp();
-    setTimestamp(_timeStamp);
-  };
-
   useEffect(() => {
     if (timestamp === 0) {
       return;
@@ -78,8 +73,16 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           script.remove();
         }
       }
-    }
+    };
   }, [timestamp]);
+
+  // 구매하기 버튼 클릭
+  const onClickPurchase = () => {
+    const _timeStamp = MakeTimeStamp();
+    setTimestamp(_timeStamp);
+  };
+
+  const { P_VBANK_TM, P_VBANK_DT } = getDueDateAndTime(payData.depositDueDate);
 
   return (
     <div style={{ display: "none" }}>
@@ -180,7 +183,9 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
           type="hidden"
           readOnly
           name="acceptmethod"
-          value={`centerCd(Y):SKIN(${payData.payPopupSkin || "#C1272C"})`}
+          value={`centerCd(Y):SKIN(${
+            payData.payPopupSkin || "#C1272C"
+          }):vbank(${P_VBANK_DT}${P_VBANK_TM})`}
         />
       </form>
 
@@ -221,9 +226,21 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
         <input type="text" readOnly name="P_RESERVED" value={"centerCd=Y"} />
         <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
 
-        <input type="text" readOnly name="P_NOTI" value={payData.mobileCustomData || ""} />
-        <input type="text" readOnly name="P_NOTI_URL" value={payData.notiURL || ""} />
+        <input
+          type="text"
+          readOnly
+          name="P_NOTI"
+          value={payData.mobileCustomData || ""}
+        />
+        <input
+          type="text"
+          readOnly
+          name="P_NOTI_URL"
+          value={payData.notiURL || ""}
+        />
         <input type="text" readOnly name="P_CHARSET" value={"utf8"} />
+        <input type="text" readOnly name="P_VBANK_DT" value={P_VBANK_DT} />
+        <input type="text" readOnly name="P_VBANK_TM" value={P_VBANK_TM} />
       </form>
 
       <button onClick={onClickPurchase}>구매하기 버튼</button>
