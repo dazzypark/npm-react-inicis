@@ -240,6 +240,11 @@ const ReactInicis = _ref => {
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     readOnly: true,
+    name: "P_NOTI_URL",
+    value: payData.notiURL || ""
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    readOnly: true,
     name: "P_CHARSET",
     value: "utf8"
   })), /*#__PURE__*/_react.default.createElement("button", {

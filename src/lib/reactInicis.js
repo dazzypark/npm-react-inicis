@@ -222,6 +222,7 @@ const ReactInicis = ({ payData, isPurchase, isTest }) => {
         <input type="text" readOnly name="P_EMAIL" value={payData.buyerEmail} />
 
         <input type="text" readOnly name="P_NOTI" value={payData.mobileCustomData || ""} />
+        <input type="text" readOnly name="P_NOTI_URL" value={payData.notiURL || ""} />
         <input type="text" readOnly name="P_CHARSET" value={"utf8"} />
       </form>
 
