@@ -1,5 +1,5 @@
 import SHA256 from "@utils/SHA256";
-import { getDueDateAndTime } from "@utils/getDueDateAndTime";
+import getDueDateAndTime from "@utils/getDueDateAndTime";
 import MakeTimeStamp from "@utils/makeTimeStamp";
 import React, { useEffect, useRef, useState } from "react";
 
