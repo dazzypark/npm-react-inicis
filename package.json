@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "rm -rf dist && mkdir dist && babel src/lib -d dist --copy-files"
+    "publish:npm": "rm -rf dist && mkdir dist && babel src/lib -d dist --copy-files",
+    "gsync": "git pull && pnpm install"
   },
   "eslintConfig": {
     "extends": [
