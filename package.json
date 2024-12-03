@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "publish:npm": "rm -rf dist && mkdir dist && babel src/lib -d dist --copy-files",
-    "gsync": "git stash && git pull && git stash pop && pnpm install"
+    "gsync": "git stash && git pull && git stash pop && pnpm update \"@types/*\" && pnpm install && pnpm outdated"
   },
   "eslintConfig": {
     "extends": [

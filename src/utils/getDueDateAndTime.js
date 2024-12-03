@@ -3,14 +3,17 @@ function getDueDateAndTime(timestamp) {
     timestamp = Date.now() + 1000 * 60 * 60 * 24 * 29;
   }
 
-  const date = new Date(timestamp);
+  const dueDateTime = new Date(timestamp);
 
-  const dueDateTime = new Date(date.getTime());
+  const formatNumber = (num) => String(num).padStart(2, "0");
 
-  const P_VBANK_DT = dueDateTime.toISOString().split("T")[0].replace(/-/g, "");
+  const year = dueDateTime.getFullYear();
+  const month = formatNumber(dueDateTime.getMonth() + 1);
+  const day = formatNumber(dueDateTime.getDate());
+  const P_VBANK_DT = `${year}${month}${day}`;
 
-  const hours = String(dueDateTime.getHours()).padStart(2, "0");
-  const minutes = String(dueDateTime.getMinutes()).padStart(2, "0");
+  const hours = formatNumber(dueDateTime.getHours());
+  const minutes = formatNumber(dueDateTime.getMinutes());
   const P_VBANK_TM = `${hours}${minutes}`;
 
   return { P_VBANK_DT, P_VBANK_TM };
