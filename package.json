@@ -1,20 +1,25 @@
 {
   "name": "@dazzy/react-inicis",
-  "version": "1.2.7",
+  "version": "1.2.10",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "dependencies": {
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^4.2.4"
+
+  "dependencies": {},
+  "peerDependencies": {
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20"
   },
+
   "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4",
     "@babel/cli": "^7.28.3",
     "@babel/preset-react": "^7.28.5",
     "babel-plugin-module-resolver": "^5.0.2"
   },
-  "scripts": {
+    "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
