@@ -26,3 +26,5 @@ demo
 .babelrc
 webpack.config.js
 public
+
+pnpm-workspace.yaml
